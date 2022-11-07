@@ -6,21 +6,25 @@ public class Ejercicio10 {
 	//cargo maximo es 10€ cada 24h
 	//ningun coche ha de estar más de 24h
 	
-	public static double CargoPorEstacion(int horas, double euro) {
-		double cuotaMin = 2.00;
+	public static double CargoPorEstacion(int horas) {
+		final double cuotaMin = 2.00;
 		double cobroADC = 0.50;
 		double cuota = 0;
-		int contadorADC;
+		int contadorADC = 0;
 		
 		
-		for (contadorADC = 0 ; contadorADC == horas; cobroADC++) {
-			while (horas <= 3) {
-				cuota = cuota + cuotaMin;
-			}
-			if (horas > 3) {
-				cuota = cuota + cobroADC;
-			}
-			
+		if (horas <= 3) {
+			cuota = cuota + cuotaMin;
+		} 
+		
+		else if (horas > 3) {
+		contadorADC = horas;
+		cobroADC = cobroADC + cobroADC * contadorADC;
+		cuota = cobroADC;
+		}
+		
+		if (cuota > 10) {
+			cuota = 10;
 		}
 		return cuota;
 	}
@@ -28,25 +32,27 @@ public class Ejercicio10 {
 	
 	public static void main(String[] args) {
 		int horas = 0, contadorCond, conductores;
-		double euro;
 		Scanner teclado = new Scanner(System.in);
 		
 		System.out.println("Número de conductores estacionados: ");
-		conductores = teclado.nextInt() +1;
+		conductores = teclado.nextInt();
 		
-		
-		for (contadorCond = 0 ; contadorCond < conductores + 1 ; contadorCond++) {
-			while (contadorCond < conductores) {
+		if (conductores >= 0) {
+			for (contadorCond = 1 ; contadorCond <= conductores ; contadorCond++) {
+				
 				System.out.println("Conductor " + contadorCond + ":");
 				System.out.printf("Tiempo estacionado: ");
 				horas = teclado.nextInt();
 				
-				if (horas < 0 || horas > 24) {
-					System.out.println("ERROR - EL MÍNIMO ES 0 HORAS, EL MÁXIMO ES 24.");
+				if (horas < 1 || horas > 24) {
+					System.out.println("ERROR - EL MÍNIMO ES 1 HORA, EL MÁXIMO ES 24.");
 				}
-				System.out.println("Su cargo es: " + CargoPorEstacion(horas, euro = 0));
-				contadorCond = contadorCond+1;
+				else
+				System.out.println("Su cargo es: " + CargoPorEstacion(horas)+ "€");
 			}
+		}
+		else {
+			System.out.println("wtf como que " + conductores + " eres bobo o qué");
 		}
 	}
 
