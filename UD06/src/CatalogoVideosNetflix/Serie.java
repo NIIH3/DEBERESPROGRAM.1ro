@@ -1,6 +1,6 @@
 package CatalogoVideosNetflix;
 
-public abstract class Serie extends Video {
+public class Serie extends Video {
 
 	private int annoEmision;
 	private int annoFinal;
@@ -19,7 +19,7 @@ public abstract class Serie extends Video {
 
 	@Override
 	public String toString() {
-		return "Serie [ Titulo =" + titulo + "| Código=" + codigo + "| Año de emisión = " + annoEmision + "| Año de fin de emisión = " + annoFinal 
+		return "Serie [ Titulo = " + titulo + "| Año de emisión = " + annoEmision + "| Año de fin de emisión = " + annoFinal 
 				+ "| Temporadas = " + numTemp + "| Capítulos = " + numCap + "]";
 	}
 

@@ -1,7 +1,7 @@
 package CatalogoVideosNetflix;
 
 
-public abstract class Pelicula extends Video {
+public class Pelicula extends Video {
 	
 	private int annoEstreno;
 	private String director;
@@ -16,7 +16,7 @@ public abstract class Pelicula extends Video {
 
 	@Override
 	public String toString() {
-		return "Película [Código = " + codigo + " | Título = " + titulo + " | Año de estreno = " + annoEstreno + " | Director = " + director +  "]";
+		return "Película [Título = " + titulo + " | Año de estreno = " + annoEstreno + " | Director = " + director +  "]";
 	}
 
 
