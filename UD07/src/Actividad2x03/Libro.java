@@ -3,7 +3,7 @@ package Actividad2x03;
 public class Libro implements Comparable<Libro>{
 
 	
-	private int ISBN;
+	private String isbn;
 	private String titulo;
 	private String escritor;
 	private int annoPubli;
@@ -11,9 +11,9 @@ public class Libro implements Comparable<Libro>{
 	private double precio;
 	
 	
-	public Libro(int iSBN, String titulo, String escritor, int annoPubli, int stock, double precio) {
+	public Libro(String isbn, String titulo, String escritor, int annoPubli, int stock, double precio) {
 		super();
-		ISBN = iSBN;
+		isbn = isbn;
 		this.titulo = titulo;
 		this.escritor = escritor;
 		this.annoPubli = annoPubli;
@@ -22,9 +22,23 @@ public class Libro implements Comparable<Libro>{
 	}
 
 
+	public Libro(String isbn2) {
+	}
+
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Libro [ISBN = " + ISBN + "| Título = " + titulo + "| Escritor = " + escritor + "| Año de Publicación = " + annoPubli + "]"
+		return "Libro [ISBN = " + isbn + "| Título = " + titulo + "| Escritor = " + escritor + "| Año de Publicación = " + annoPubli + "]"
 				+ "\n[ Stock = " + stock + "| Precio = " + precio + "]";
 	}
 

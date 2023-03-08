@@ -27,7 +27,7 @@ public class Act2x03MAIN {
 		System.out.println("(7) Consultar el libro de mayor precio de la librería");
 		System.out.println("(8) Gestionar la venta de una unidad de un determinado libro por ISBN");
 		System.out.println();
-		System.out.println("------ M I S C E L Á N E O S ------");
+		System.out.println("- - - - - - - -   M I S C E L Á N E O S   - - - - - - - -");
 		System.out.println("(10) Crear la ciudad de Zaragoza sin librerías");
 		System.out.println("(11) Añadir la Librería que se esté gestionando en el menú, a la ciudad de Zaragoza");
 		System.out.println("(12) Consultar los libros de todas las librerías de la ciudad de Zaragoza");
@@ -37,44 +37,50 @@ public class Act2x03MAIN {
 	
 	public static void main(String[] args) {
 		List<Libro> lista = new ArrayList<>();
-		int opcion, ISBN, annoPubli, stock;
+		List<Libro> listaAux;
+		int opcion, annoPubli, stock;
 		double precio;
-		String titulo, escritor;
+		String titulo, nombre, escritor, isbn;
 		Libro libro;
+		boolean encontrado = false;
 		
 		do {
 			escribirMenuOpciones();
 			opcion = Teclado.leerEntero("¿Opcion? ");
+			Libreria libreria = null;
 			
 			switch(opcion) {
 			case 0:
 				break;
 				
 			case 1:
+				nombre = Teclado.leerCadena("¿Nombre? = ");
+				libreria = new Libreria(nombre);
+				System.out.println("Se ha creado una nueva librería");
 				break;
 				
 			case 2:
-			ISBN = Teclado.leerEntero("¿DNI? = ");
-			libro  = new Libro (ISBN, "", "", 0, 0, 0);
-			if (lista.contains(libro)) {
-				System.out.println("Ya existe un librp con ese ISBN en la lista.");
-			}
-			else {
+				isbn = Teclado.leerCadena("¿ISBN? = ");
+				for (int i = 0 ; i < lista.size() ; i++) {
+					Libro lib = lista.get(i);
+					if (lib.getIsbn().equals(isbn)) {
+						encontrado = true;
+					}
+				}
+				if (encontrado) {
+					System.out.println("Ya existe un libro con ese ISBN");
+				}
 				titulo = Teclado.leerCadena("¿Título? = ");
 				escritor = Teclado.leerCadena("¿Nombre del Escritor/a? = ");
 				annoPubli = Teclado.leerEntero("¿Año de publicación? = ");
 				stock = Teclado.leerEntero("¿Stock? = ");
 				precio = Teclado.leerEntero("¿Precio? = ");
-				libro = new Libro(ISBN, titulo, escritor, annoPubli, stock, precio);
-				if (lista.add(libro)) {
-					System.out.println("Se ha insertado una Persona en la lista.");
-				}
-			}
+				libro = new Libro(isbn, titulo, escritor, annoPubli, stock, precio);
 				break;
 				
 			case 3:
-				ISBN = Teclado.leerEntero("¿ISBN? = ");
-				libro  = new Libro (ISBN, "", "", 0, 0, 0);
+				isbn = Teclado.leerCadena("¿ISBN? = ");
+				libro  = new Libro (isbn, "", "", 0, 0, 0);
 				if (lista.remove(libro)) {
 					System.out.println("Se ha eliminado un libro de la lista.");
 				}
@@ -87,12 +93,26 @@ public class Act2x03MAIN {
 				break;
 				
 			case 5:
+				if (libreria == null) {
+					System.out.println("Antes debes crear una libreria");
+				}
+				else {
+					System.out.println(libreria.toString());
+				}
 				break;
 				
 			case 6:
 				break;
 				
 			case 7:
+				if (libreria == null) {
+					System.out.println("Antes se ha de crear una librería.");
+				}
+				else {
+					escritor = Teclado.leerCadena("¿Escritor? = ");
+					listaAux = libreria.consultarPorEscritor(escritor);
+					
+				}
 				break;
 				
 			case 8:
