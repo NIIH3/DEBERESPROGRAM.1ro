@@ -21,7 +21,7 @@ public class Plantilla {
 	}
 	
 	public boolean buscarPorDni (String dni) {
-		Empleado empleado = new Empleado(dni, "", 0);
+		Empleado empleado = new Empleado(dni, "", 0, "");
 		return conjuntoEmpleados.contains(empleado);
 		//for (Empleado emp : conjuntoEmpleados) {
 		//	if (emp.getDni().equals(dni)) {
@@ -29,6 +29,15 @@ public class Plantilla {
 		//	}
 		//}
 		//return false;
+	}
+	
+	public boolean buscarPorSalarioDesc (double salario) {
+		for (Empleado e : conjuntoEmpleados) {
+			if (e.getSalario() == salario) {
+				return true;
+			}
+		}
+		return false;
 	}
 	public Set<Empleado> obtenerEmpleados() {
 		return conjuntoEmpleados;
