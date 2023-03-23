@@ -3,12 +3,12 @@ package conjunto_empleados;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import conjunto_turismo.OrdenTurismoMatriculaAsc;
-import conjunto_turismo.Turismo;
+
 import entrada.Teclado;
 
 
@@ -47,6 +47,7 @@ public class GestorPlantilla {
 		
 		Plantilla plantilla = new Plantilla();
 		Set<Empleado> conjEmpAux;
+		List<Empleado> listaAux = new LinkedList<Empleado>();
 		Empleado empleado;
 		double salario;
 		int opcion;
@@ -57,6 +58,7 @@ public class GestorPlantilla {
 			switch (opcion) {
 			case 0:
 				break;
+			//Insertar un Empleado en la plantilla
 			case 1:
 				dni = Teclado.leerCadena("¿DNI? = ");
 				if (plantilla.buscarPorDni(dni)) {
@@ -73,11 +75,11 @@ public class GestorPlantilla {
 					}
 				}
 				break;
-				
+			//Consultar todos los Empleados de la plantilla por DNI ascendente
 			case 2:
 				conjEmpAux = plantilla.obtenerEmpleados();
 				if (conjEmpAux.isEmpty()) {
-					System.out.println("Esta plantilla está vacío");
+					System.out.println("Esta plantilla está vacía");
 				}
 				else {
 					for (Empleado e : conjEmpAux) {
@@ -87,15 +89,45 @@ public class GestorPlantilla {
 				}
 								
 				break;
+			//Consultar los Empleados por salario descendiente
 			case 3:
-				
-
-				
+				conjEmpAux = plantilla.obtenerEmpleados();
+				if (conjEmpAux.isEmpty()) {
+					System.out.println("Esta plantilla está vacía");
+				}
+				else {
+					listaAux = plantilla.ordenarSalarioDescendente();
+					for (Empleado e : listaAux) {
+						System.out.println(e.toString());
+					}
+					System.out.println(conjEmpAux.size() + " Empleados consultados");
+				}
 				break;
+			//Eliminar un Empleado de la plantilla por DNI
 			case 4:
-				
+				dni = Teclado.leerCadena("¿Matrícula? = ");
+				empleado = new Empleado(dni, "", 0, "");
+				if (plantilla.eliminar(empleado)) {
+					System.out.println("Turismo eliminado del conjunto");
+				}
+				else {
+					System.out.println("No existe un Turismo con esa matrícula");
+				}
 				break;
+				
+			//Consultar los empleados de un departamento de la plantilla
 			case 5:
+				conjEmpAux = plantilla.obtenerEmpleados();
+				if (conjEmpAux.isEmpty()) {
+					System.out.println("Esta plantilla está vacía");
+				}
+				else {
+					listaAux = plantilla.consultarPorDepartamento();
+					for (Empleado e : listaAux) {
+						System.out.println(e.toString());
+					}
+					System.out.println(conjEmpAux.size() + " Empleados consultados"); 
+				}
 				
 				break;
 			case 6:

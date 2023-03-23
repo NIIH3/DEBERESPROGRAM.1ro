@@ -1,7 +1,12 @@
 package conjunto_empleados;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
 
 public class Plantilla {
 
@@ -14,6 +19,10 @@ public class Plantilla {
 	
 	public boolean insertar (Empleado empleado) {
 		return conjuntoEmpleados.add(empleado);
+	}
+	
+	public boolean eliminar(Empleado empleado) {
+		return conjuntoEmpleados.remove(empleado);
 	}
 	
 	public boolean estaVacia() {
@@ -42,5 +51,22 @@ public class Plantilla {
 	public Set<Empleado> obtenerEmpleados() {
 		return conjuntoEmpleados;
 	}
+	
+	public List<Empleado> ordenarSalarioDescendente () {
+		List<Empleado> listaOrdenada = new ArrayList<Empleado>();
+		listaOrdenada.addAll(conjuntoEmpleados);
+		Collections.sort(listaOrdenada, new OrdenSalarioDescendiente());
+		return listaOrdenada;
+	}
+	
+	public List<Empleado> consultarPorDepartamento() {
+		return null;
+		
+	}
+
+
+
+
+
 	
 }
