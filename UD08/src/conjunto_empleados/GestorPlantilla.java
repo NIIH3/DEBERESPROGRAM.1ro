@@ -1,5 +1,6 @@
 package conjunto_empleados;
 
+import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -29,17 +30,17 @@ public class GestorPlantilla {
 		System.out.println("(9) Consultar todos los empleados ordenados por departamento ascendente");
 		System.out.println("(11) Incrementar un 5% el salario de los empleados de un departamento de la plantilla");
 		System.out.println("(12) Mover los empleados con el DNI finalizado en 3 dígitos de un departamento de la plantilla");
-		System.out.println("(13) Eliminar los empleados de un departamento de la plantilla");
+		System.out.println("(13) Eliminar los empleados de un departamento");
 		System.out.println("(14) Eliminar los empleados con un salario inferior a una cantidad de la plantilla");
 		System.out.println("(15) Eliminar los empleados con un salario inferior a la media de los salarios de la plantilla");
 		System.out.println();
 	}
 	
-	public static void escribirConjuntoEmpleados(Set<Empleado> conjuntoEmpleados) {
-		for (Empleado emp : conjuntoEmpleados) {
+	public static void escribirEmpleados(Collection<Empleado> coleccionEmpleados) {
+		for (Empleado emp : coleccionEmpleados) {
 			System.out.println(emp.toString());
 		}
-		System.out.println(conjuntoEmpleados.size() + " empleados consultados");
+		System.out.println(coleccionEmpleados.size() + " empleados consultados");
 	}
 	
 	
@@ -136,10 +137,25 @@ public class GestorPlantilla {
 			case 7:
 				
 				break;
+			//Consultar el numero de empleados que más cobran de cada departamento
 			case 8:
-				
+				if (plantilla.estaVacia()) {
+					System.out.println("Esta plantilla está vacía");
+				}
+				else {
+					listaAux = plantilla.consultarEmpleadosPorDept();
+					escribirEmpleados(listaAux);
+					}
 				break;
+				
+			//Consultar todos los empleados ordenados por departamento ascendente
 			case 9:
+				if (plantilla.estaVacia()) {
+					System.out.println("Esta plantilla está vacía");
+				}
+				else {
+					listaAux = plantilla.consultarPorDepartamentoNombreAsc();
+				}
 				
 				break;
 			case 10:
@@ -151,7 +167,14 @@ public class GestorPlantilla {
 			case 12:
 				
 				break;
+				
+			//Eliminar los empleados de un departamento
 			case 13:
+				if (plantilla.estaVacia()) {
+					System.out.println("Esta plantilla está vacía");
+				}
+				int empleadosEliminados = 0;
+
 				
 				break;
 			case 14:
